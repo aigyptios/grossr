@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ECaseStatus, ICase } from '../../types';
-import { cases } from '../../app/tempData';
 
 export interface ICasesState {
   cases: ICase[]
 }
 
 const initialState: ICasesState = {
-  cases,
-
+  cases: []
 };
 
 export const casesSlice = createSlice({
@@ -16,7 +14,7 @@ export const casesSlice = createSlice({
   initialState,
   reducers: {
     addCase: (state, action: PayloadAction<ICase>) => {
-      state.cases.push(action.payload);
+      state.cases.push({...action.payload, id: state.cases.length + 100001});
     },
     deleteCase: (state, action: PayloadAction<number>) => {
       state.cases = state.cases.filter( c => c.id !== action.payload);

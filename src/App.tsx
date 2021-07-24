@@ -4,10 +4,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { EditCase } from "./features/cases/EditCase";
-import { CaseList } from "./features/cases/CaseList";
-import { ViewCase } from "./features/cases/ViewCase";
-import { CreateCase } from "./features/cases/CreateCase";
+import { EditCase, CaseList, ViewCase, CreateCase } from "./features/cases";
 
 export default function App() {
    

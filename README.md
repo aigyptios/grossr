@@ -2,6 +2,12 @@
 
 This is a React+Redux+Typescript application demonstrating a medical lab workflow application.
 
+## Technical Decisions
+
+In image uploading, I chose to encode the images as data URLs instead of object URLs (c.f., <https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded>) because I wanted to persist them into the Redux store and possibly beyond the browser session; ideally, the images would be uploaded to a back-end server (on my to-do list below), and could then more reliably be stored as an ObjectURL.
+
+`react-image-annotation` dependency used for image annotation functionality. This package is a little out of date, so it would be good to find a suitable alternative, or fork it.
+
 ## To Do
 
 - [x] Add Redux and Typescript
@@ -10,11 +16,11 @@ This is a React+Redux+Typescript application demonstrating a medical lab workflo
   - [x] Case view
   - [x] Case edit/create
 - [x] Add skeleton state slice, reducer, actions
-- [ ] Create/view/edit/delete case
+- [x] Create/view/edit/delete case
 - [ ] Case list filtering, sorting
-- [ ] Create/delete note
-- [ ] Create/delete image
-- [ ] Create/delete image annotation (add, delete)
+- [x] Create/delete note
+- [x] Create/delete image
+- [ ] Create/delete image annotation
 - [x] Status functionality (restricted set status)
 - [ ] Pretty UI
   - [ ] Responsive
