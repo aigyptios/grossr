@@ -12,7 +12,7 @@ Once that's done, you can run `npm start` and hit up <http://localhost:3000>.
 
 The app has the following routes:
 
-- `/cases/` to view the case list (the app defaults to this route if none other matches)
+- `/cases/` to view the case list (the app defaults to this route if no other route matches)
 - `/cases/create` to create a case
 - `/case/:id` to view a already created case
 - `case/:id/edit` to edit a case
