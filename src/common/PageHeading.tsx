@@ -4,7 +4,8 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   heading: {
     marginBottom: '15px',
-    color: '#0e4b5c',
+    color: '#144fd6',
+    letterSpacing: '4px',
   }
 })
 

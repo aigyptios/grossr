@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch } from "../../../app/hooks";
-import { Card, PageHeading } from "../../../common";
+import { Button, Card, FormElement, PageHeading } from "../../../common";
 import { ICase } from "../../../types";
 import { addCase } from "../casesSlice";
 import CaseForm from "./CaseForm";
@@ -26,8 +26,10 @@ export default function CreateCase() {
       <PageHeading>Create Case</PageHeading>
       <Card>
         <CaseForm setCaseData={setLocalCase} />
-        <button onClick={cancel}>Cancel</button>
-        <button onClick={save}>Save</button>
+        <FormElement>
+          <Button onClick={cancel}>Cancel</Button>
+          <Button onClick={save}>Save</Button>
+        </FormElement>
       </Card>
     </div>
   );

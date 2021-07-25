@@ -1,7 +1,8 @@
 import { useHistory } from "react-router-dom"
 import { useAppDispatch } from "../../../app/hooks"
+import { Button } from "../../../common"
 import { ECaseStatus, ICase } from "../../../types"
-import { acceptCase, rejectCase, resubmitCase, submitCase } from "../casesSlice"
+import { acceptCase, deleteCase, rejectCase, resubmitCase, submitCase } from "../casesSlice"
 
 type TCaseAction = {
   label: string,
@@ -27,7 +28,7 @@ export default function CaseActions({ whichCase }: ICaseActionsProps) {
     case ECaseStatus.SUBMITTED:
     case ECaseStatus.RESUBMITTED:
       availableActions = [
-        { label: 'accept', handler: () => dispatch(acceptCase(id)) },
+        { label: 'approve', handler: () => dispatch(acceptCase(id)) },
         { label: 'reject', handler: () => dispatch(rejectCase(id)) }
       ]
       break;
@@ -39,8 +40,10 @@ export default function CaseActions({ whichCase }: ICaseActionsProps) {
     default:
       availableActions = []
   }
-
+  availableActions.push({
+    label: 'delete', handler: () => dispatch(deleteCase(id))
+  })
   return <>
-    { availableActions.map( ({handler, label}, i) => <button key={i} onClick={handler}>{ label.toUpperCase() }</button>) }
+    { availableActions.map( ({handler, label}, i) => <Button key={i} onClick={handler}>{ label.toUpperCase() }</Button>) }
   </>
 }

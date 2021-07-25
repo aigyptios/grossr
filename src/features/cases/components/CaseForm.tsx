@@ -1,6 +1,43 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { ECaseStatus, ICase, IAnnotatedImage, IAnnotation } from "../../../types";
+import { FormElement, Button } from "../../../common";
 import SpecimenImage from "./SpecimenImage";
+import { createUseStyles } from "react-jss";
+
+const useStyles = createUseStyles({
+  entryField: {
+    padding: '10px',
+    borderRadius: '3px',
+    border: '1px solid #ddd',
+    width: '100%',
+    fontSize: '16px',
+    fontFamily: 'inherit',
+  },
+  delete: {
+    position: 'absolute',
+    right: '10px',
+    top: '5px',
+    border: 'none',
+    background: 'transparent',
+    font: 'inherit',
+    color: 'inherit',
+    cursor: 'pointer'
+  },
+  note: {
+    background: '#f0f8ff',
+    padding: '5px 25px 5px 5px',
+    marginBottom: '5px',
+    borderRadius: '3px',
+    position: 'relative',
+  },
+  specimenWrapper: {
+    width: '100%',
+    maxWidth: '600px',
+    marginTop: '10px',
+    marginRight: '10px',
+    position: 'relative',
+  }
+})
 
 interface IEditCaseFormProps {
   initialCaseData?: ICase;
@@ -16,6 +53,8 @@ export default function CaseForm({ initialCaseData, setCaseData }: IEditCaseForm
 
   const     fileRef = useRef<HTMLInputElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const styles = useStyles();
 
   const addImages = () => {
     Array.prototype.map.call(fileRef.current?.files, addSingleImage);
@@ -72,34 +111,44 @@ export default function CaseForm({ initialCaseData, setCaseData }: IEditCaseForm
       status: ECaseStatus.CREATED,
       meta: {
         created: initialCaseData?.meta.created || Date.now(),
-        lastUpdated: Date.now()
+        lastUpdated: initialCaseData?.id ? Date.now() : undefined
       }
     });
   }, [firstName, lastName, notes, images, dob, initialCaseData?.id, initialCaseData?.meta.created, setCaseData]);
 
   return (
     <>
-      <input type="text" value={firstName} onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)} /><br />
-      <input type="text" value={lastName} onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)} /><br />
-      <input type="date" value={dob} onChange={(e: ChangeEvent<HTMLInputElement>) => setDob(e.target.value)} /><br />
-
-      Specimen <br />
-      <input type="file" accept="image/*" name="addImages" id="addImages" onChange={addImages} ref={fileRef} multiple /><br />
-      {images.map((image, i) =>
-        <div key={i} style={{width: 500}}>
-          <SpecimenImage 
-            image={image}
-            onSubmit={(annotation: IAnnotation) => submitAnnotation(i, annotation)}
-          />
-          <button onClick={() => removeImage(i)}>x</button>
-        </div>
-      )}<br />
-
-      Notes <br />
-      {notes.map((note, i) =>
-        <p key={i}>{note.text.split('\n').map( (text, j) => <span key={j}>{text}<br /></span>)} <button onClick={() => removeNote(i)}>x</button></p>
-      )}<br />
-      <textarea ref={textAreaRef}></textarea><button onClick={addNote}>Add Note</button>
+      <FormElement label="First Name">
+        <input className={styles.entryField} type="text" value={firstName} onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)} />
+      </FormElement>
+      <FormElement label="Last Name">
+        <input className={styles.entryField} type="text" value={lastName} onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)} />
+      </FormElement>
+      <FormElement label="Date of Birth">
+        <input className={styles.entryField} type="date" value={dob} onChange={(e: ChangeEvent<HTMLInputElement>) => setDob(e.target.value)} />
+      </FormElement>
+      <FormElement label="Specimen">
+        <input className={styles.entryField} type="file" accept="image/*" name="addImages" id="addImages" onChange={addImages} ref={fileRef} multiple />
+        {images.map((image, i) =>
+          <div key={i} className={styles.specimenWrapper}>
+            <SpecimenImage 
+              image={image}
+              onSubmit={(annotation: IAnnotation) => submitAnnotation(i, annotation)}
+            />
+            <button className={styles.delete} onClick={() => removeImage(i)}>&times;</button>
+          </div>
+        )}
+      </FormElement>
+      <FormElement label="Notes">
+        {notes.map((note, i) =>
+          <p className={styles.note} key={i}>
+            {note.text.split('\n').map( (text, j) => <span key={j}>{text}<br /></span>)}
+            <button className={styles.delete} onClick={() => removeNote(i)}>&times;</button>
+          </p>
+        )}
+        <textarea className={styles.entryField} ref={textAreaRef}></textarea><Button onClick={addNote}>Add Note</Button>
+      </FormElement>
     </>
   );
 }
+

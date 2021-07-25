@@ -1,7 +1,8 @@
 import { createUseStyles } from "react-jss"
 
 interface IIconProps {
-  name: string
+  name: string,
+  className?: string
 }
 
 const useStyles = createUseStyles({
@@ -10,7 +11,7 @@ const useStyles = createUseStyles({
   }
 })
 
-export default function Icon({name}: IIconProps) {
+export default function Icon({name, className: classNames}: IIconProps) {
   const { icon } = useStyles();
-  return <span className={"material-icons-round " + icon}>{name}</span>
+  return <span className={"material-icons-round " + (classNames ? `${classNames} ` : ' ') + icon}>{name}</span>
 }

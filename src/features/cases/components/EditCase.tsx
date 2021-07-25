@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch, useCaseFromIdParam } from "../../../app/hooks";
-import { PageHeading, Card } from "../../../common";
+import { PageHeading, Card, Button, FormElement } from "../../../common";
 import { ICase } from "../../../types";
 import { updateCase } from "../casesSlice";
 import CaseForm from "./CaseForm";
@@ -21,12 +21,13 @@ export default function EditCase() {
 
   return (
     whichCase ? <div>
-      <PageHeading>Edit Case {whichCase.id}</PageHeading>
+      <PageHeading>Edit Case (ID: {whichCase.id})</PageHeading>
       <Card>
-        {localCase?.firstName} {localCase?.lastName}
         <CaseForm initialCaseData={whichCase} setCaseData={setLocalCase}/>
-        <button onClick={() => history.goBack()}>Cancel</button>
-        <button onClick={save}>Save</button>
+        <FormElement>
+          <Button onClick={() => history.goBack()}>Cancel</Button>
+          <Button onClick={save}>Save</Button>
+        </FormElement>
       </Card>
     </div>
     : null
