@@ -14,6 +14,8 @@ In image uploading, I chose to encode the images as data URLs instead of object 
 
 The `react-image-annotation` dependency was used for image annotation functionality. This package is good for a demo application, but because it's a little out of date, it could use a lot more rigorous feature testing (e.g., annotations toward the bottom of an image get cut off, which I've tried to mitigate by increasing the padding). It would be good to find a suitable alternative, or fork it to maintain it.
 
+There are some dummy images included in `assets/images/specimens` that can be used to showcase the image annotation functionality.
+
 ### UI and CSS
 
 I chose not to use a UI library like Material-UI or React-Bootstrap in order to demonstrate the ability to create a sleek UIs with just CSS. However, when building a customer-facing application with many pages and components, I'd strongly lean toward using (and extending) one so as to streamline things like layout, forms, typography, etc. Due to limitations on time, the CSS here could be significantly optimized; I would like to extract common colors, layout values (padding and margins), media queries into repeatable modules, or into a theme. I'd like to try an atomic CSS approach, like [Tailwind](https://tailwindcss.com/).
