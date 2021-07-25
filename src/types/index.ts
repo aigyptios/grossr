@@ -1,15 +1,22 @@
-export type TAnnotation = {
+import { IAnnotation } from "react-image-annotation";
 
-}
+// export interface IAnnotation {
+//   selection: any,
+//   geometry: {
+//     type: string
+//   },
+//   data: string
+// }
 
-export interface IAnnotationData {
-  imageId: string,
-  annotation: TAnnotation
+export interface IAnnotatedImage {
+  id: number,
+  src: string,
+  alt: string,
+  annotations?: IAnnotation[]
 }
 
 export interface INote {
-  text: string,
-  annotationData?: IAnnotationData,
+  text: string
 }
 
 export enum ECaseStatus {
@@ -30,7 +37,7 @@ export interface ICase {
   lastName: string,
   id: number,
   notes: INote[],
-  images: string[],
+  images: IAnnotatedImage[],
   status: ECaseStatus,
   dob: string,
   meta: ICaseMetaData

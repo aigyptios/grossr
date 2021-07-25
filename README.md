@@ -20,14 +20,15 @@ In image uploading, I chose to encode the images as data URLs instead of object 
 - [ ] Case list filtering, sorting
 - [x] Create/delete note
 - [x] Create/delete image
-- [ ] Create/delete image annotation
+- [x] Create image annotation
 - [x] Status functionality (restricted set status)
 - [ ] Pretty UI
   - [ ] Responsive
-- [ ] Some Tests
+- [ ] Tests for Reducer
 
 ## Nice to Haves
 
+- [ ] Delete/edit image annotation
 - [ ] Search table
 - [ ] Figure out modularized routing (e.g., routes declared in features and imported into `App` routes)
 - [ ] More Tests

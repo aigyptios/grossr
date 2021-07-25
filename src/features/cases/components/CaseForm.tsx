@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { ECaseStatus, ICase } from "../../../types";
-import Annotation from 'react-image-annotation';
+import { ECaseStatus, ICase, IAnnotatedImage } from "../../../types";
+import { IAnnotation } from 'react-image-annotation';
+import SpecimenImage from "./SpecimenImage";
 
 interface IEditCaseFormProps {
   initialCaseData?: ICase;
@@ -8,11 +9,11 @@ interface IEditCaseFormProps {
 }
 
 export default function CaseForm({ initialCaseData, setCaseData }: IEditCaseFormProps) {
-  const [firstName, setFirstName] = useState(initialCaseData?.firstName || '');
-  const   [lastName, setLastName] = useState(initialCaseData?.lastName || '');
-  const         [notes, setNotes] = useState(initialCaseData?.notes || []);
-  const       [images, setImages] = useState(initialCaseData?.images || []);
-  const             [dob, setDob] = useState(initialCaseData?.dob || '');
+  const     [firstName, setFirstName] = useState(initialCaseData?.firstName || '');
+  const       [lastName, setLastName] = useState(initialCaseData?.lastName || '');
+  const             [notes, setNotes] = useState(initialCaseData?.notes || []);
+  const           [images, setImages] = useState(initialCaseData?.images || []);
+  const                 [dob, setDob] = useState(initialCaseData?.dob || '');
 
   const     fileRef = useRef<HTMLInputElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -25,11 +26,30 @@ export default function CaseForm({ initialCaseData, setCaseData }: IEditCaseForm
     setImages(images.filter((_, i) => i !== index))
   }
 
+  const submitAnnotation = (imageIndex: number, annotation: IAnnotation) => {
+    const annotatedImage = images[imageIndex];
+    const prevAnnotations = annotatedImage.annotations || [];
+    setImages(images.map((image, i) => {
+      if (i !== imageIndex)
+        return image;
+      else
+        return {...image, annotations: [...prevAnnotations, annotation]};
+    }));
+  }
+
   const addSingleImage = (file: File) => {
     var reader = new FileReader();
     reader.onload = () => {
-      if (reader.result)
-        setImages(prevImages => [...prevImages, reader.result as string]);
+      if (reader.result) {
+        const url = reader.result as string;
+        const annotatedImage: IAnnotatedImage = {
+          src: url,
+          alt: `Image for specimen ${images.length + 1}`,
+          id: images.length + 1,
+          annotations: []
+        }
+        setImages(prevImages => [...prevImages, annotatedImage]);
+      }
     };
     reader.readAsDataURL(file);
   };
@@ -66,25 +86,21 @@ export default function CaseForm({ initialCaseData, setCaseData }: IEditCaseForm
 
       Specimen <br />
       <input type="file" accept="image/*" name="addImages" id="addImages" onChange={addImages} ref={fileRef} multiple /><br />
-      {images.map((url, i) =>
-        <div key={i}><img src={url} height="200" alt={`Specimen ${i + 1}`} /><button onClick={() => removeImage(i)}>x</button></div>
+      {images.map((image, i) =>
+        <div key={i} style={{width: 500}}>
+          <SpecimenImage 
+            image={image}
+            onSubmit={(annotation: IAnnotation) => submitAnnotation(i, annotation)}
+          />
+          <button onClick={() => removeImage(i)}>x</button>
+        </div>
       )}<br />
 
       Notes <br />
-      {console.log(notes)}
-      {notes.filter(note => !note.annotationData).map((note, i) =>
+      {notes.map((note, i) =>
         <p key={i}>{note.text.split('\n').map( (text, j) => <span key={j}>{text}<br /></span>)} <button onClick={() => removeNote(i)}>x</button></p>
       )}<br />
       <textarea ref={textAreaRef}></textarea><button onClick={addNote}>Add Note</button>
     </>
   );
 }
-
-// function Specimen({}: ISpecimenProps) {
-  
-// }
-// interface ISpecimenProps {
-//   imageSrc: string,
-//   imageAlt: string,
-//   editable: boolean,
-// }
