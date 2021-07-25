@@ -1,12 +1,13 @@
 import { IAnnotation } from "react-image-annotation";
 
 // export interface IAnnotation {
-//   selection: any,
-//   geometry: {
-//     type: string
-//   },
-//   data: string
+  //   selection: any,
+  //   geometry: {
+  //     type: string
+  //   },
+  //   data: string
 // }
+export type { IAnnotation as IAnnotation } from "react-image-annotation"
 
 export interface IAnnotatedImage {
   id: number,

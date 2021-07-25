@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IAnnotatedImage } from "../../../types";
-import Annotation, { IAnnotation } from 'react-image-annotation';
+import { IAnnotatedImage, IAnnotation } from "../../../types";
+import Annotation from 'react-image-annotation';
 
 interface ISpecimenImageProps {
   image: IAnnotatedImage;

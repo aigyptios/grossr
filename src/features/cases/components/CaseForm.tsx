@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { ECaseStatus, ICase, IAnnotatedImage } from "../../../types";
-import { IAnnotation } from 'react-image-annotation';
+import { ECaseStatus, ICase, IAnnotatedImage, IAnnotation } from "../../../types";
 import SpecimenImage from "./SpecimenImage";
 
 interface IEditCaseFormProps {
