@@ -8,6 +8,19 @@ Once that's done, you can run `npm start` and hit up <http://localhost:3000>.
 
 ## Architecture and Technical Decisions
 
+### Routes
+
+The app has the following routes:
+
+- `/cases/` to view the case list
+- `/cases/create` to create a case
+- `/case/:id` to view a already created case
+- `case/:id/edit` to edit a case
+
+### Components
+
+I tried to reduce code duplication, and divided components into feature-related and common components (in `features` and `common`, respectively). All components related to cases are included in `features/cases`, along with the Redux store. Common components can be shared among different features, and are in their own directory. (This is not groundbreaking.)
+
 ### Images
 
 In image uploading, I chose to encode the images as data URLs instead of object URLs (c.f., <https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded>) because I wanted to persist them into the Redux store and possibly beyond the browser session; ideally, the images would be uploaded to a back-end server (on my 'Nice to Haves' list below), and could then more reliably be stored as an ObjectURL.
