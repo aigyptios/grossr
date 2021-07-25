@@ -2,11 +2,13 @@
 
 This is a React+Redux+Typescript application demonstrating a medical lab workflow application.
 
-## Technical Decisions
+## Architecture and Technical Decisions
 
 In image uploading, I chose to encode the images as data URLs instead of object URLs (c.f., <https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded>) because I wanted to persist them into the Redux store and possibly beyond the browser session; ideally, the images would be uploaded to a back-end server (on my to-do list below), and could then more reliably be stored as an ObjectURL.
 
-`react-image-annotation` dependency used for image annotation functionality. This package is a little out of date, so it would be good to find a suitable alternative, or fork it.
+The `react-image-annotation` dependency used for image annotation functionality. This package is a little out of date, so it would be good to find a suitable alternative, or fork it.
+
+I chose not to use a UI library like Material-UI or React-Bootstrap in order to demonstrate the ability to create a sleek UIs with just CSS. However, when building a customer-facing application with many pages and components, I'd strongly lean toward using (and extending) one so as to streamline things like layout, forms, typography, etc.
 
 ## To Do
 
