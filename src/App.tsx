@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
