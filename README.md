@@ -2,7 +2,9 @@
 
 This is a React+Redux+Typescript application demonstrating a medical lab workflow application.
 
-Once you have cloned the repo run `npm i` in the directory to install packages.
+(This README assumes you have node and npm installed.)
+
+Once you have cloned the repo, you can run `npm i` in the directory to install packages.
 
 Once that's done, you can run `npm start` and hit up <http://localhost:3000>.
 
@@ -14,7 +16,7 @@ The app has the following routes:
 
 - `/cases/` to view the case list (the app defaults to this route if no other route matches)
 - `/cases/create` to create a case
-- `/case/:id` to view a already created case
+- `/case/:id` to view an already created case
 - `case/:id/edit` to edit a case
 
 ### Components
