@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/grossr/cases/static/css/main.150ae91a.chunk.css",
-    "main.js": "/grossr/cases/static/js/main.6325e31c.chunk.js",
-    "main.js.map": "/grossr/cases/static/js/main.6325e31c.chunk.js.map",
-    "runtime-main.js": "/grossr/cases/static/js/runtime-main.42a797f1.js",
-    "runtime-main.js.map": "/grossr/cases/static/js/runtime-main.42a797f1.js.map",
-    "static/js/2.ae67d7e2.chunk.js": "/grossr/cases/static/js/2.ae67d7e2.chunk.js",
-    "static/js/2.ae67d7e2.chunk.js.map": "/grossr/cases/static/js/2.ae67d7e2.chunk.js.map",
-    "index.html": "/grossr/cases/index.html",
-    "static/css/main.150ae91a.chunk.css.map": "/grossr/cases/static/css/main.150ae91a.chunk.css.map",
-    "static/js/2.ae67d7e2.chunk.js.LICENSE.txt": "/grossr/cases/static/js/2.ae67d7e2.chunk.js.LICENSE.txt"
+    "main.css": "/grossr/static/css/main.150ae91a.chunk.css",
+    "main.js": "/grossr/static/js/main.d162c5cd.chunk.js",
+    "main.js.map": "/grossr/static/js/main.d162c5cd.chunk.js.map",
+    "runtime-main.js": "/grossr/static/js/runtime-main.c95c4c54.js",
+    "runtime-main.js.map": "/grossr/static/js/runtime-main.c95c4c54.js.map",
+    "static/js/2.2ba01ab1.chunk.js": "/grossr/static/js/2.2ba01ab1.chunk.js",
+    "static/js/2.2ba01ab1.chunk.js.map": "/grossr/static/js/2.2ba01ab1.chunk.js.map",
+    "index.html": "/grossr/index.html",
+    "static/css/main.150ae91a.chunk.css.map": "/grossr/static/css/main.150ae91a.chunk.css.map",
+    "static/js/2.2ba01ab1.chunk.js.LICENSE.txt": "/grossr/static/js/2.2ba01ab1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.42a797f1.js",
-    "static/js/2.ae67d7e2.chunk.js",
+    "static/js/runtime-main.c95c4c54.js",
+    "static/js/2.2ba01ab1.chunk.js",
     "static/css/main.150ae91a.chunk.css",
-    "static/js/main.6325e31c.chunk.js"
+    "static/js/main.d162c5cd.chunk.js"
   ]
 }
