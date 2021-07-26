@@ -1,5 +1,7 @@
 # Grossr
 
+Live demo: <https://aigyptios.github.io/grossr>
+
 This is a React+Redux+Typescript application demonstrating a medical lab workflow application.
 
 (This README assumes you have node and npm installed.)
