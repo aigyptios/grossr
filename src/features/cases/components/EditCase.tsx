@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch, useCaseFromIdParam } from "../../../app/hooks";
 import { PageHeading, Card, Button, FormElement } from "../../../common";
-import { ICase } from "../../../types";
+import { ECaseStatus, ICase } from "../../../types";
 import { updateCase } from "../casesSlice";
 import CaseForm from "./CaseForm";
 
@@ -13,6 +13,9 @@ export default function EditCase() {
   const    history = useHistory();
 
   const [localCase, setLocalCase] = useState<ICase | undefined>(whichCase);
+
+  if (whichCase?.status === ECaseStatus.APPROVED) 
+    history.push(`/case/${whichCase.id}`);
 
   const save = () => {
     dispatch(updateCase(localCase!));
