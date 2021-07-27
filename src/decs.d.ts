@@ -29,6 +29,8 @@ declare module "react-image-annotation" {
     selection?: {
       mode: string;
       showEditor: boolean;
+      anchorX?: number,
+      anchorY?: number,
     };
     geometry: IGeometry;
     data: {

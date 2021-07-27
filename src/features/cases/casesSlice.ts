@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ECaseStatus, ICase } from '../../types';
+import { initialState } from './initialState';
 
 export interface ICasesState {
   cases: ICase[]
 }
-
-const initialState: ICasesState = {
-  cases: []
-};
 
 export const casesSlice = createSlice({
   name: 'counter',
