@@ -69,7 +69,7 @@ export default function CaseList() {
   const [filter, setFilter] = useState<ECaseStatus | undefined>();
   const styles = useStyles();
 
-  const casesToDisplay = filter ? cases.filter(filters[filter]) : cases;
+  const casesToDisplay = filter !== undefined ? cases.filter(filters[filter]) : cases;
 
   const goTo = (path: string) => {
     history.push(path);
